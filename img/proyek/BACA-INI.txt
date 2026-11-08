@@ -1,0 +1,2 @@
+Taruh foto/screenshot proyek websitemu di folder ini (contoh: kasir.jpg, keyv-coffe.jpg).
+Lalu daftarkan di js/data-folder.js pada bagian "proyek" -> items.
