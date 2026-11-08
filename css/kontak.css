@@ -1,0 +1,43 @@
+/* =========================================================
+   CONTACT  "Hal hebat dimulai bersama."
+   Terang = putih  |  Mode malam = hitam
+   ========================================================= */
+
+
+
+/* latar: kisi halus, dua cahaya melayang, cincin berputar */
+
+
+
+
+
+@keyframes ctFloat{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6%,8%,0) scale(1.15)}}
+
+
+@keyframes ctSpin{to{transform:rotate(360deg)}}
+
+/* isi */
+
+
+
+@keyframes ctPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--k-ac) 55%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+
+
+@keyframes ctShine{0%,30%{background-position:100% 0}70%,100%{background-position:0 0}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HP */
+
+

@@ -1,0 +1,74 @@
+/* HOBI ALAM: isi halaman gaya baris "foto + teks" (carousel foto/video per gunung) */
+:root{--ab-bg:#eef3ec;--ab-ink:#17161a;--ab-mut:#5d594f;--ab-ln:rgba(23,22,26,.12);--ab-card:#fff;--ab-lm:#c9d93e}
+html[data-theme=dark]{--ab-bg:#070a09;--ab-ink:#f2f0e8;--ab-mut:#a9a597;--ab-ln:rgba(255,255,255,.12);--ab-card:#14161a}
+
+/* gelombang di tepi bawah hero */
+.aw{--wh:clamp(46px,6vw,88px);position:relative;z-index:4;display:block;height:var(--wh);margin-top:calc(var(--wh) * -1);overflow:hidden;pointer-events:none}
+.aw svg{position:absolute;left:0;bottom:-1px;width:200%;height:100%;will-change:transform;animation:awL var(--t,40s) linear infinite}
+.aw .l1{--t:48s}.aw .l1 path{fill:#35d0e6;opacity:.55}
+.aw .l2{--t:34s;animation-direction:reverse}.aw .l2 path{fill:#9be15d;opacity:.6}
+.aw .l3{--t:26s}.aw .l3 path{fill:var(--ab-bg)}
+@keyframes awL{to{transform:translate3d(-50%,0,0)}}
+
+.ab{position:relative;background:radial-gradient(45% 30% at 92% 8%,rgba(155,225,93,.22),transparent 70%),radial-gradient(40% 30% at 4% 60%,rgba(53,208,230,.16),transparent 70%),var(--ab-bg);color:var(--ab-ink);padding-bottom:clamp(30px,5vw,60px)}
+.ab-in{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+.ab-row{--c:#35d0e6;position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,6vw,84px);align-items:center;padding:clamp(34px,5.5vw,70px) 0;border-bottom:1px solid var(--ab-ln)}
+.ab-row:last-of-type{border-bottom:0}
+.ab-row.rev .ab-media{order:2}
+.ab-media{display:flex;justify-content:center}
+.ab-tx{position:relative;max-width:46ch}
+.ab-lb{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:600 .72rem/1 "Courier New",ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--ab-mut)}
+.ab-lb i{width:34px;height:2px;border-radius:2px;background:var(--c)}
+.ab .ab-tx h2{margin:0 0 14px;font-size:clamp(1.9rem,3.8vw,3.1rem)}
+.ab .ab-tx h2 em{background:linear-gradient(100deg,var(--c),var(--ab-ink) 170%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ab-tx>p{margin:0 0 18px;font:400 clamp(.92rem,1.3vw,1.02rem)/1.8 Poppins,sans-serif;color:var(--ab-mut)}
+.ab-tg{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.ab-tg li{padding:8px 14px;border-radius:99px;background:var(--ab-card);box-shadow:0 0 0 1px var(--ab-ln);font:600 .74rem/1 Poppins,sans-serif;color:var(--ab-ink)}
+.ab-no{position:absolute;right:0;top:50%;translate:0 -50%;font:italic 700 clamp(6rem,16vw,13rem)/1 var(--lux);color:var(--c);opacity:.055;pointer-events:none;user-select:none;z-index:0}
+.ab-row.rev .ab-no{right:auto;left:0}
+.ab-row>*:not(.ab-no){position:relative;z-index:1}
+
+/* carousel */
+.ab-car{position:relative;width:100%;max-width:480px;border-radius:28px;overflow:hidden;background:#0d1110;
+  box-shadow:0 34px 60px -34px rgba(10,30,20,.6),0 0 0 1px var(--ab-ln),0 0 70px -30px var(--c)}
+.ab-trk{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.ab-trk::-webkit-scrollbar{display:none}
+.ab-trk:focus-visible{outline:3px solid var(--c);outline-offset:-3px}
+.ab-sl{position:relative;flex:0 0 100%;margin:0;aspect-ratio:4/5;scroll-snap-align:center;scroll-snap-stop:always;background:#0d1110}
+.ab-sl img,.ab-sl video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ab-car:after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,rgba(5,8,8,.6));pointer-events:none}
+.ab-cnt{position:absolute;top:14px;right:14px;z-index:3;padding:6px 11px;border-radius:99px;background:rgba(8,10,10,.6);font:700 .68rem/1 "Courier New",ui-monospace,monospace;letter-spacing:.08em;color:#fff}
+.ab-vt{position:absolute;top:14px;left:14px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;background:rgba(8,10,10,.6);font:700 .64rem/1 Poppins,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.ab-vt:before{content:"";width:7px;height:7px;border-radius:50%;background:#ff4d4d}
+.ab-snd{position:absolute;right:14px;bottom:52px;z-index:3;display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:rgba(8,10,10,.62);color:#fff;font-size:1rem;cursor:pointer}
+.ab-dots{position:absolute;left:0;right:0;bottom:16px;z-index:3;display:flex;justify-content:center;gap:6px;pointer-events:none}
+.ab-dots i{width:6px;height:6px;border-radius:99px;background:rgba(255,255,255,.5);transition:width .3s,background .3s}
+.ab-dots i.on{width:20px;background:#fff}
+.ab-ar{position:absolute;top:50%;z-index:3;translate:0 -50%;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:rgba(8,10,10,.55);color:#fff;font:400 1.5rem/1 Poppins,sans-serif;cursor:pointer;opacity:0;transition:opacity .3s,background .2s}
+.ab-ar:hover{background:var(--c)}
+.ab-pv{left:12px;padding-bottom:3px}.ab-nx{right:12px;padding-bottom:3px}
+@media(hover:hover){.ab-car:hover .ab-ar{opacity:1}}
+.ab-ar[disabled]{display:none}
+
+/* placeholder air terjun */
+
+
+
+
+
+
+
+
+.al-end{background:var(--ab-bg);padding:0 clamp(18px,4vw,48px) clamp(40px,6vw,70px)}
+.al-end .al-nav{margin-top:0}
+
+@media(max-width:760px){
+  .ab-row,.ab-row.rev{grid-template-columns:1fr;gap:22px;padding:34px 0}
+  .ab-row.rev .ab-media{order:0}
+  .ab-car{max-width:none;border-radius:24px}
+  .ab-tx{max-width:none}
+  .ab-no{top:12px;right:0;translate:none;font-size:6rem}
+  .ab-row.rev .ab-no{left:auto;right:0}
+  .ab-ar{display:none}
+}
+@media(prefers-reduced-motion:reduce){.aw svg{animation:none}}

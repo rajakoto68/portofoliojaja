@@ -1,0 +1,45 @@
+/* ==========================================================
+   KONTAK JOKI: WhatsApp + Instagram (menyatu dengan gelombang)
+   ========================================================== */
+:root{--nw-ct-t:#eef6cc;--nw-ct-b:#fff}
+:root[data-theme=dark]{--nw-ct-t:#121a03;--nw-ct-b:#000}
+.ngw.w5{--a:var(--nw-gal-b);--b:var(--nw-ct-t);--c1:var(--nw-sky);--c2:var(--nw-lime)}
+.ng-ct{position:relative;overflow:hidden;padding:clamp(40px,7vw,84px) max(clamp(18px,4vw,48px),calc((100% - 1100px)/2 + clamp(18px,4vw,48px))) clamp(64px,9vw,110px);
+  background:radial-gradient(40% 30% at 90% 20%,color-mix(in srgb,var(--nw-lime) 55%,transparent),transparent 70%),linear-gradient(var(--nw-ct-t),var(--nw-ct-b))}
+.ng-ct-k{display:inline-flex;align-items:center;gap:10px;font:600 .72rem/1 Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.ng-ct-k:after{content:"";width:46px;height:1px;background:currentColor;opacity:.5}
+.ng-ct h2{margin:14px 0 12px;font:600 clamp(2rem,6vw,4rem)/1.05 Poppins,sans-serif;letter-spacing:-.04em;text-wrap:balance}
+.ng-ct h2 em{font:italic 700 1.06em/1 var(--lux);letter-spacing:0;color:#1d6f3b}
+:root[data-theme=dark] .ng-ct h2 em{color:#c9d93e}
+.ng-ct-sub{max-width:54ch;margin:0 0 clamp(24px,4vw,40px);font:400 clamp(.92rem,1.5vw,1.05rem)/1.75 Poppins,sans-serif;color:var(--mut)}
+.ng-ct-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,22px)}
+.ng-ct-c{--tc:#25d366;position:relative;display:flex;flex-direction:column;gap:6px;padding:clamp(20px,3vw,32px);border-radius:28px;overflow:hidden;text-decoration:none;color:#f4f2ea;
+  background:#13120f;box-shadow:0 0 0 1px color-mix(in srgb,var(--tc) 45%,transparent),0 30px 44px -30px rgba(10,20,10,.7);transition:transform .4s cubic-bezier(.2,.9,.3,1.2),box-shadow .35s}
+.ng-ct-c:before{content:"";position:absolute;right:-20%;bottom:-50%;width:75%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--tc) 40%,transparent),transparent);pointer-events:none}
+.ng-ct-c>*{position:relative}
+.ng-ct-c:hover{transform:translateY(-6px);box-shadow:0 0 0 2px var(--tc),0 36px 50px -28px rgba(10,20,10,.8)}
+.ng-ct-ig{--tc:#e1306c}
+.ng-ct-ic{display:grid;place-items:center;width:54px;height:54px;margin-bottom:10px;border-radius:17px;background:var(--tc);color:#fff}
+.ng-ct-ig .ng-ct-ic{background:linear-gradient(45deg,#f9a03f,#e1306c 55%,#7c3aed)}
+.ng-ct-ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ng-ct-c small{font:600 .68rem/1 Poppins,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,242,234,.6)}
+.ng-ct-c strong{font:700 clamp(1.25rem,2.6vw,1.9rem)/1.15 Poppins,sans-serif;letter-spacing:-.02em;overflow-wrap:anywhere}
+.ng-ct-c p{margin:2px 0 14px;font:400 .86rem/1.6 Poppins,sans-serif;color:rgba(244,242,234,.7)}
+.ng-ct-go{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:auto;padding:12px 18px;border-radius:99px;background:var(--tc);color:#fff;font:700 .84rem/1 Poppins,sans-serif}
+.ng-ct-wa .ng-ct-go{color:#06210f}
+.ng-ct-go b{font-weight:700}
+.ng-ct-ch{display:flex;flex-wrap:wrap;gap:8px;margin:clamp(18px,3vw,28px) 0 0;padding:0;list-style:none}
+.ng-ct-ch li{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:99px;background:color-mix(in srgb,var(--nw-lime) 45%,transparent);font:600 .76rem/1 Poppins,sans-serif;color:var(--ink)}
+.ng-ct-ch i{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--ink);color:var(--cream);font:800 .58rem/1 Poppins,sans-serif;font-style:normal}
+.ng-ct-cp{margin-top:18px;padding:0;border:0;background:none;cursor:pointer;font:600 .8rem/1.4 Poppins,sans-serif;color:var(--mut);text-decoration:underline;text-underline-offset:3px}
+.ng-ct-cp:hover{color:var(--ink)}
+@media(max-width:720px){
+  .ng-ct-g{grid-template-columns:1fr}
+  .ng-ct-c{border-radius:24px}
+  .ng-ct-go{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){.ng-ct-c{transition:none}}
+/* handle IG harus satu baris, jangan patah di tengah kata */
+.ng-ct-ig strong{font-size:clamp(.88rem,3.7vw,1.2rem);overflow-wrap:normal;word-break:normal;white-space:nowrap}
+@media(min-width:721px){.ng-ct-ig strong{font-size:clamp(1rem,1.9vw,1.4rem)}}
+.hb-sec.ng-gal{padding-bottom:clamp(24px,4vw,48px)}

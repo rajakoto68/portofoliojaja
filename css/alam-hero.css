@@ -1,0 +1,22 @@
+/* HERO ALAM: foto Bromo layar penuh, teks seminimal mungkin */
+.al-hero{height:100vh;height:100svh}
+.al-hero .st{height:100%;background:#0b1220}
+.ah-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%;transform-origin:50% 60%;will-change:transform;animation:ahZ 26s ease-in-out infinite alternate}
+@keyframes ahZ{from{transform:scale(1)}to{transform:scale(1.08)}}
+/* gelapkan sedikit di atas (header) & bawah (judul) supaya teks putih terbaca */
+.al-hero .st:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(rgba(5,10,20,.45),transparent 22%,transparent 50%,rgba(5,10,20,.7))}
+.al-hero .st:after{background:none}
+.al-hero h1.ah-t{position:absolute;inset:auto 0 clamp(96px,17vh,170px) 0;display:block;padding:0 5vw;text-align:center;
+  font-size:clamp(2.8rem,9.5vw,8.5rem);line-height:1;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.55);animation:ahIn 1.4s cubic-bezier(.2,.8,.2,1) both}
+.al-hero h1.ah-t span{display:inline;opacity:1;translate:none}
+.al-hero h1.ah-t i{font-style:italic;background:linear-gradient(100deg,#7be3d3,#d7e65a);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 4px 24px rgba(0,0,0,.45))}
+@keyframes ahIn{from{opacity:0;translate:0 26px}to{opacity:1;translate:0 0}}
+.ah-scr{position:absolute;left:50%;bottom:clamp(70px,11vh,104px);z-index:2;translate:-50% 0;width:22px;height:36px;border-radius:99px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.ah-scr:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:3px;background:#fff;animation:ahSc 1.8s ease-in-out infinite}
+@keyframes ahSc{0%{opacity:0;translate:0 0}30%{opacity:1}100%{opacity:0;translate:0 12px}}
+@media(max-width:700px){
+  .ah-img{object-position:42% 55%}
+  .al-hero h1.ah-t{font-size:clamp(2.6rem,14.5vw,4.4rem)}
+  .al-hero h1.ah-t span,.al-hero h1.ah-t i{display:block}
+}
+@media(prefers-reduced-motion:reduce){.ah-img,.al-hero h1.ah-t,.ah-scr:after{animation:none}}

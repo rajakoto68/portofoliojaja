@@ -1,0 +1,59 @@
+/* =========================================================
+   RESPONSIF HP  (dimuat paling akhir di index.html)
+   - kunci geser samping tanpa merusak position:sticky
+   - tata letak HP landscape
+   - area sentuh, safe-area, layar sangat kecil
+   ========================================================= */
+
+/* 1. Tidak ada geser ke samping di HP (clip tidak membuat scroll-container, jadi sticky tetap jalan) */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip}
+body{overflow-x:clip;max-width:100%;overscroll-behavior-x:none}
+
+/* 2. Sentuhan: tanpa kedip abu-abu & tanpa jeda 300ms / zoom ganda */
+a,button,summary,[role=button],[role=switch],label{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+img,video{-webkit-touch-callout:none}
+
+/* 3. Teks panjang tidak mendorong layout keluar layar */
+@media(max-width:700px){
+  h2,h3,p,li,dd,dt,figcaption{overflow-wrap:break-word}
+}
+
+/* 4. Layar sangat kecil (<= 360px) */
+@media(max-width:360px){
+  .ab4 h2{font-size:1.35rem}
+  .ab4 p{font-size:.82rem}
+  .ab4-cta a{font-size:.8rem;padding:12px 6px}
+}
+
+/* 5. HP posisi landscape (tinggi layar pendek): About jadi dua kolom, tidak terpotong */
+@media(max-width:960px) and (max-height:520px) and (orientation:landscape){
+  .ab4-stage{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);grid-template-rows:none;align-items:center;gap:20px;padding:46px 24px 90px 24px}
+  .ab4-bar{left:24px;right:24px;top:14px;padding-bottom:8px}
+  .ab4-fg{height:min(52svh,200px)}
+  .ab4-tx{align-items:center}
+  .ab4 .lb{margin-bottom:4px}
+  .ab4 h2{font-size:1.25rem;margin-bottom:6px}
+  .ab4 p{font-size:.72rem;line-height:1.4;margin-bottom:6px}
+  .ab4-ls{margin-bottom:6px}
+  .ab4-ls>div{padding:3px 0}
+  .ab4-ls dt{font-size:.66rem}.ab4-ls dd{font-size:.76rem}
+  .ab4-cta a{padding:8px 12px;font-size:.72rem}
+  .ab4-hint{display:none}
+  
+}
+
+/* 6. Tinggi layar memakai satuan dinamis agar tidak loncat saat address bar HP naik/turun */
+
+
+/* 7. Penampil galeri: hormati poni / bar gerak di HP */
+.glb{padding-left:max(clamp(14px,4vw,56px),env(safe-area-inset-left));padding-right:max(clamp(14px,4vw,56px),env(safe-area-inset-right))}
+.glb-x{top:max(clamp(12px,3vw,32px),env(safe-area-inset-top))}
+@media(max-width:700px){
+  .glb-p,.glb-n{bottom:max(18px,env(safe-area-inset-bottom))}
+}
+
+/* 8. Footer & konten bawah tidak tertutup navigasi bawah HP */
+@media(max-width:700px){
+  footer{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+

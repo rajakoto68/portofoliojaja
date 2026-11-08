@@ -1,0 +1,56 @@
+/* =========================================================
+   PEMISAH ANTAR-SECTION: gelombang air + burung
+   Warna atas = warna section di atasnya, warna bawah = section di bawahnya,
+   jadi sambungannya mulus di mode pagi maupun malam.
+   Ringan: hanya transform (translate/scale), jalan hanya saat terlihat.
+   ========================================================= */
+.wv{--h:clamp(84px,9.5vw,150px);--fade:90px;--ac1:#f7931e;--ac2:#c9d93e;--cr:rgba(247,147,30,.55);--bd:#1c1a24;
+  position:relative;z-index:3;height:calc(var(--h) + var(--fade));margin-top:calc(var(--fade) * -1);overflow:hidden;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 0,var(--from) var(--fade));contain:layout paint}
+html[data-theme=dark] .wv{--cr:rgba(255,207,138,.4)}
+/* warna sambungan: dari section atas -> ke section bawah */
+.wv-a{--from:#fff;--to:#edf0ee}
+.wv-b{--from:#edf0ee;--to:#fff}
+.wv-c,.wv-d,.wv-e{--from:#fff;--to:#fff}
+.wv-f{--from:#fff;--to:#eaf0f8}
+html[data-theme=dark] .wv-a{--from:#fff;--to:#0e0d13}
+html[data-theme=dark] .wv-b{--from:#0e0d13;--to:#fff}
+html[data-theme=dark] .wv-c{--from:#fff;--to:#07070b}
+html[data-theme=dark] .wv-d{--from:#07070b;--to:#050507}
+html[data-theme=dark] .wv-e{--from:#050507;--to:#040405}
+html[data-theme=dark] .wv-f{--from:#040405;--to:#14131a}
+/* burung: terang di latar gelap, gelap di latar terang */
+.wv-b,.wv-c{--bd:#f4f2ea}
+html[data-theme=dark] .wv-d,html[data-theme=dark] .wv-e,.wv-a{--bd:#f4f2ea}
+.wv-a{--bd:#1c1a24}
+html[data-theme=dark] .wv-a{--bd:#1c1a24}
+html[data-theme=dark] .wv-c{--bd:#1c1a24}
+html:not([data-theme=dark]) .wv-b{--bd:#1c1a24}
+html:not([data-theme=dark]) .wv-c,html:not([data-theme=dark]) .wv-d,html:not([data-theme=dark]) .wv-e{--bd:#1c1a24}
+
+/* tiga lapis gelombang, kecepatan & arah berbeda */
+.wv-t{position:absolute;left:0;bottom:-2px;width:200%;height:var(--wh,70%);will-change:transform}
+.wv-t svg{display:block;width:100%;height:100%}
+.wv-t.l1{--wh:94%}
+.wv-t.l2{--wh:78%}
+.wv-t.l3{--wh:60%}
+.wv-t .f{fill:var(--to)}
+.wv-t.l1 .f{fill:color-mix(in srgb,var(--ac1) 6%,color-mix(in srgb,var(--to) 30%,var(--from)))}
+.wv-t.l2 .f{fill:color-mix(in srgb,var(--ac2) 6%,color-mix(in srgb,var(--to) 64%,var(--from)))}
+.wv-t .c{fill:none;stroke:var(--cr);stroke-width:2;vector-effect:non-scaling-stroke}
+.wv.live .l1{animation:wvL 26s linear infinite}
+.wv.live .l2{animation:wvR 19s linear infinite}
+.wv.live .l3{animation:wvL 13s linear infinite}
+@keyframes wvL{to{translate:-50% 0}}
+@keyframes wvR{from{translate:-50% 0}to{translate:0 0}}
+
+/* burung terbang melintas */
+.bd{position:absolute;left:0;top:var(--y,22%);width:var(--w,40px);color:var(--bd);opacity:0;translate:-80px 0}
+.bd svg{display:block;width:100%;height:auto;fill:currentColor;transform-origin:50% 60%}
+.wv.live .bd{animation:bdFly var(--t,22s) linear var(--dl,0s) infinite}
+.wv.live .bd svg{animation:bdFlap .7s ease-in-out infinite alternate}
+@keyframes bdFly{0%{opacity:0;translate:-8vw 0}6%{opacity:.9}50%{translate:55vw -14px}94%{opacity:.9}100%{opacity:0;translate:108vw 6px}}
+@keyframes bdFlap{from{transform:scaleY(1)}to{transform:scaleY(.5)}}
+
+@media (max-width:640px){.wv{--h:84px;--fade:60px}.bd{--w:28px}}
+@media (prefers-reduced-motion:reduce){.wv *{animation:none !important}.bd{display:none}}

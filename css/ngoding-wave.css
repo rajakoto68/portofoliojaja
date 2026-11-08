@@ -1,0 +1,63 @@
+/* ==========================================================
+   NGODING: gelombang pemisah antar-section + warna menyatu
+   Ringan: SVG statis + animasi transform saja (tanpa blur/filter),
+   otomatis berhenti saat tidak terlihat & saat reduced-motion.
+   ========================================================== */
+:root{
+  --nw-hero:#07080b;
+  --nw-fdr-t:#fff;      --nw-fdr-b:#fff;
+  --nw-why-t:#e8f0ff;   --nw-why-b:#eef4e0;
+  --nw-ly-t:#f0f7cf;    --nw-ly-b:#fbfdf0;
+  --nw-gal-t:#eaf3ff;   --nw-gal-b:#fff;
+  --nw-lime:#d4e47a;    --nw-sky:#a9c8ff;
+}
+:root[data-theme=dark]{
+  --nw-fdr-t:#000;      --nw-fdr-b:#000;
+  --nw-why-t:#08122a;   --nw-why-b:#050a18;
+  --nw-ly-t:#141b03;    --nw-ly-b:#000;
+  --nw-gal-t:#07122a;   --nw-gal-b:#000;
+  --nw-lime:#4a5a0a;    --nw-sky:#1a3a8a;
+}
+
+/* ---- latar section: gradasi lembut, ujungnya = warna gelombang ---- */
+.fdr.fdr-page{background:linear-gradient(var(--nw-fdr-t),var(--nw-fdr-b))}
+.ng-why{position:relative;overflow:hidden;max-width:none;margin:0;
+  padding-inline:max(clamp(18px,4vw,48px),calc((100% - 1100px)/2 + clamp(18px,4vw,48px)));
+  background:
+    radial-gradient(45% 38% at 88% 40%,color-mix(in srgb,var(--nw-lime) 55%,transparent),transparent 70%),
+    linear-gradient(var(--nw-why-t),var(--nw-why-b))}
+.ng-why>*{position:relative}
+.ng-why:before{content:"</>";position:absolute;right:3%;top:2%;font:italic 700 clamp(8rem,24vw,22rem)/1 var(--lux);
+  color:var(--ink);opacity:.05;pointer-events:none;user-select:none}
+.ng-why li{border-radius:4px}
+.ng-why li:hover{padding-left:18px}
+.ly{background:
+    radial-gradient(40% 30% at 10% 28%,color-mix(in srgb,var(--nw-sky) 45%,transparent),transparent 70%),
+    linear-gradient(var(--nw-ly-t),var(--nw-ly-b))}
+/* glow lama pakai blur(30px) yang berat & kepotong di tepi -> diganti gradasi biasa */
+.ly:before{filter:none;top:6%;right:-8%;opacity:.8}
+.hb-sec.ng-gal{max-width:none;margin:0;padding-top:clamp(36px,6vw,70px);padding-bottom:clamp(56px,8vw,100px);
+  padding-inline:max(clamp(18px,4vw,48px),calc((100% - 1180px)/2 + clamp(18px,4vw,48px)));
+  background:
+    radial-gradient(40% 28% at 88% 25%,color-mix(in srgb,var(--nw-lime) 50%,transparent),transparent 70%),
+    linear-gradient(var(--nw-gal-t),var(--nw-gal-b))}
+
+/* ---- gelombang ---- */
+.ngw{--wh:clamp(64px,10vw,160px);position:relative;display:block;height:var(--wh);margin:0 0 -1px;overflow:hidden;pointer-events:none;background:var(--a);contain:paint}
+.ngw svg{position:absolute;left:0;bottom:-1px;width:200%;height:100%;will-change:transform;animation:ngwL var(--t,30s) linear infinite}
+.ngw .l1{--t:46s}.ngw .l2{--t:34s;animation-direction:reverse}.ngw .l3{--t:26s}
+.ngw .l1 path{fill:var(--c1);opacity:.55}
+.ngw .l2 path{fill:var(--c2);opacity:.7}
+.ngw .l3 path{fill:var(--b)}
+@keyframes ngwL{to{transform:translate3d(-50%,0,0)}}
+.ng-js .ngw:not(.on) svg{animation-play-state:paused}
+
+.ngw.w1{--a:var(--nw-hero);--b:var(--nw-fdr-t);--c1:var(--nw-lime);--c2:var(--nw-sky)}
+.ngw.w2{--a:var(--nw-fdr-b);--b:var(--nw-why-t);--c1:var(--nw-lime);--c2:var(--nw-sky)}
+.ngw.w3{--a:var(--nw-why-b);--b:var(--nw-ly-t);--c1:var(--nw-sky);--c2:var(--nw-lime)}
+.ngw.w4{--a:var(--nw-ly-b);--b:var(--nw-gal-t);--c1:var(--nw-lime);--c2:var(--nw-sky)}
+/* variasi bentuk supaya tiap pemisah tidak kembar */
+.ngw.w2 svg{animation-delay:-14s}.ngw.w3 svg{animation-delay:-27s}.ngw.w4 svg{animation-delay:-5s}
+.ngw.w3{--wh:clamp(56px,8vw,130px)}
+
+@media(prefers-reduced-motion:reduce){.ngw svg{animation:none}}

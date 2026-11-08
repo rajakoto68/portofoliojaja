@@ -1,0 +1,59 @@
+/* Halaman detail hobi: alam, gym, ngoding. Warna aksen per halaman lewat --ac */
+:root{--cream:#efede6;--ink:#17161a;--mut:#5d594f;--fr:#fff;--ln:rgba(23,22,26,.1);--lux:'Bodoni Moda','Playfair Display',Georgia,serif}
+:root[data-theme=dark]{color-scheme:dark;--cream:#0e0d13;--ink:#f2f0e8;--mut:#a9a597;--fr:#1a1822;--ln:rgba(242,240,232,.12)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.hb-top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(16px,4vw,48px);background:color-mix(in srgb,var(--cream) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ln)}
+.hb-back{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:99px;background:var(--fr);box-shadow:0 0 0 1px var(--ln);font:600 .82rem/1 Poppins,sans-serif;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.hb-back:hover{transform:translateX(-2px);box-shadow:0 0 0 1.5px var(--ac)}
+.hb-tg{width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;background:var(--fr);box-shadow:0 0 0 1px var(--ln);color:var(--ink);display:grid;place-items:center}
+.hb-tg svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hb-tg .i-sun{display:none}:root[data-theme=dark] .hb-tg .i-sun{display:block}:root[data-theme=dark] .hb-tg .i-moon{display:none}
+
+
+
+
+
+
+
+
+
+
+.hb-sec{max-width:1100px;margin:0 auto;padding:clamp(24px,5vw,56px) clamp(18px,4vw,48px)}
+.hb-sec h2{font:italic 500 clamp(1.8rem,4vw,2.8rem)/1.1 var(--lux);margin-bottom:8px}
+.hb-sub{color:var(--mut);font-size:.92rem;margin-bottom:24px}
+
+
+
+
+
+/* galeri: kolom masonry */
+
+.hb-it{display:block;width:100%;break-inside:avoid;margin:0 0 14px;padding:0;border:0;border-radius:20px;overflow:hidden;position:relative;cursor:zoom-in;background:#15151b;box-shadow:0 0 0 1px var(--ln),0 14px 30px -18px rgba(30,20,0,.4)}
+.hb-it img,.hb-it video{display:block;width:100%;height:auto;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.hb-it:hover img,.hb-it:hover video{transform:scale(1.04)}
+.hb-it figcaption,.hb-it .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;text-align:left;font:600 .8rem/1.3 Poppins,sans-serif;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.hb-it .tag{position:absolute;left:12px;top:12px;padding:6px 10px;border-radius:99px;background:var(--ac);color:#fff;font:700 .68rem/1 Poppins,sans-serif;letter-spacing:.06em}
+.hb-it:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+
+.hb-nav{max-width:1100px;margin:0 auto;padding:clamp(20px,4vw,40px) clamp(18px,4vw,48px) 72px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.hb-nav a{display:flex;flex-direction:column;gap:6px;padding:20px 22px;border-radius:22px;background:var(--fr);box-shadow:0 0 0 1px var(--ln);text-decoration:none;transition:transform .25s,box-shadow .25s}
+.hb-nav a:hover{transform:translateY(-3px);box-shadow:0 0 0 2px var(--ac)}
+.hb-nav small{font:600 .72rem/1 Poppins,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.hb-nav b{font:italic 500 1.6rem/1.1 var(--lux)}
+.hb-nav a:last-child{text-align:right}
+/* lightbox */
+.hb-lb{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100%;height:100%;color:#fff}
+.hb-lb::backdrop{background:rgba(8,8,12,.92)}
+.hb-lb-in{position:relative;width:100%;height:100%;display:grid;place-items:center;padding:56px 16px}
+.hb-lb img,.hb-lb video{max-width:100%;max-height:100%;border-radius:14px;object-fit:contain}
+.hb-lb p{position:absolute;left:0;right:0;bottom:14px;text-align:center;font:500 .85rem Poppins,sans-serif;padding:0 60px}
+.hb-lb button{position:absolute;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:1.3rem;cursor:pointer;display:grid;place-items:center}
+.hb-lb button:hover{background:rgba(255,255,255,.28)}
+.hb-lb .x{top:12px;right:12px}.hb-lb .pv{left:10px;top:50%;translate:0 -50%}.hb-lb .nx{right:10px;top:50%;translate:0 -50%}
+
+@media(max-width:760px){.hb-nav b{font-size:1.25rem}}
+@media(max-width:420px){.hb-it{margin-bottom:10px;border-radius:16px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

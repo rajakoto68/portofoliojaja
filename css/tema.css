@@ -1,0 +1,133 @@
+/* =========================================================
+   TEMA PAGI / MALAM  (dimuat paling akhir, jadi menimpa yang lain)
+   Mode pagi  = latar PUTIH
+   Mode malam = latar HITAM
+   Tombol bulan/matahari: html[data-theme="dark"] = malam, selain itu = pagi
+   ========================================================= */
+
+/* ---------- dasar halaman ---------- */
+:root{--cream:#fff;--bg-tema:#fff;--bg-tema-2:#f6f6f6}
+:root[data-theme=dark]{--cream:#000;--bg-tema:#000;--bg-tema-2:#0b0b0d}
+html,body{background:var(--bg-tema)}
+html[data-theme=dark] body{color:#f2f0e8}
+
+/* ---------- semua section utama (index) ---------- */
+.ab4,.lk,.skl,.journey-section,.fdr,.gal,.mp,footer{background:var(--bg-tema)}
+html[data-theme=dark] .gal,html[data-theme=dark] .mp{background:#000}
+.ab4{box-shadow:0 0 0 1px rgba(23,22,26,.08)}
+html[data-theme=dark] .ab4{box-shadow:0 0 0 1px rgba(255,255,255,.1)}
+footer{border-top:1px solid rgba(23,22,26,.1)}
+html[data-theme=dark] footer{border-top-color:rgba(255,255,255,.1)}
+
+/* journey & prestasi: variabelnya dipakai semua isi di dalamnya */
+.journey-section,.certificate-modal{--void:#fff;--panel:#f5f5f5}
+html[data-theme=dark] .journey-section,html[data-theme=dark] .certificate-modal{--void:#000;--panel:#0c0c0f}
+
+/* ---------- gelombang pemisah: putih di pagi, hitam di malam ---------- */
+.wv-a,.wv-b,.wv-c,.wv-d,.wv-e,.wv-f{--from:#fff;--to:#fff}
+html[data-theme=dark] .wv-a,html[data-theme=dark] .wv-b,html[data-theme=dark] .wv-c,
+html[data-theme=dark] .wv-d,html[data-theme=dark] .wv-e,html[data-theme=dark] .wv-f{--from:#000;--to:#000}
+.wv{--bd:#1c1a24}
+html[data-theme=dark] .wv{--bd:#f4f2ea}
+
+/* ---------- ABOUT (malam) ---------- */
+html[data-theme=dark] .ab4{--ink:#f2f0e8;--gr:#c9d93e;color:#f2f0e8}
+html[data-theme=dark] .ab4-bar{color:rgba(242,240,232,.62);border-bottom-color:rgba(255,255,255,.16)}
+html[data-theme=dark] .ab4-ghost{color:rgba(255,255,255,.06)}
+html[data-theme=dark] .ab4 p{color:rgba(242,240,232,.74)}
+html[data-theme=dark] .ab4-ls>div{border-top-color:rgba(255,255,255,.14)}
+html[data-theme=dark] .ab4-ls dt{color:rgba(242,240,232,.55)}
+html[data-theme=dark] .ab4-hint{color:rgba(242,240,232,.6)}
+html[data-theme=dark] .ab4-chip{background:#17161d;color:#f2f0e8;box-shadow:0 6px 18px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.14)}
+html[data-theme=dark] .ab4-cta .o{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4)}
+html[data-theme=dark] .ab4-ground{background:radial-gradient(closest-side,rgba(0,0,0,.7),transparent)}
+
+/* ---------- SKILL (malam) ---------- */
+html[data-theme=dark] .skl{color:#f2f0e8}
+html[data-theme=dark] .skl-h,html[data-theme=dark] .skl-t h3{color:#f2f0e8}
+html[data-theme=dark] .skl-r{border-top-color:rgba(255,255,255,.14)}
+html[data-theme=dark] .skl-r:last-child{border-bottom-color:rgba(255,255,255,.14)}
+html[data-theme=dark] .skl-b p{color:rgba(242,240,232,.74)}
+html[data-theme=dark] .skl-b dt{color:rgba(242,240,232,.55)}
+html[data-theme=dark] .skl-b dd span{background:#14131a;border-color:rgba(255,255,255,.16);color:#f2f0e8}
+html[data-theme=dark] .skl-wv .f1,html[data-theme=dark] .skl-wv .f2,html[data-theme=dark] .skl-wv .f3{fill:#000}
+html[data-theme=dark] .skl-wv .l1,html[data-theme=dark] .skl-wv .l2{stroke:rgba(255,255,255,.2)}
+
+/* ---------- PRESTASI / FOLDER (malam) ---------- */
+html[data-theme=dark] .fdr{--ink:#f2f0e8;--ink2:rgba(242,240,232,.7);--ink3:rgba(242,240,232,.5);--line:rgba(242,240,232,.22);color:#f2f0e8}
+html[data-theme=dark] .fdr-kick{color:#c9d93e}
+html[data-theme=dark] .fdr-home h2 em{color:#c9d93e}
+html[data-theme=dark] .fdr-back{background:#14131a;color:#f2f0e8;border-color:rgba(255,255,255,.22)}
+html[data-theme=dark] .fdr-back:hover,html[data-theme=dark] .fdr-back:focus-visible{background:#c9d93e;color:#13140a;border-color:#c9d93e}
+html[data-theme=dark] .fdr-title em,html[data-theme=dark] .fdr-meta b,html[data-theme=dark] .fdr-list button.on span{color:var(--ac,#c9d93e)}
+html[data-theme=dark] .fdr-list button span{color:rgba(242,240,232,.3)}
+html[data-theme=dark] .fdr-card.kosong .fdr-ph{background:rgba(255,255,255,.05)}
+
+/* ---------- halaman hobi: ngoding & gym ---------- */
+.hb-top{background:color-mix(in srgb,var(--bg-tema) 82%,transparent)}
+
+/* ---------- pemisah di atas My Journey ---------- */
+.jr-wave{background:var(--bg-tema)}
+html[data-theme=dark] .jr-hill.h1{fill:color-mix(in srgb,var(--void) 30%,#000)}
+html[data-theme=dark] .jr-hill.h2{fill:color-mix(in srgb,var(--void) 62%,#000)}
+html[data-theme=dark] .jr-flora .ctr{stroke:#000}
+html[data-theme=dark] .jr-line{stroke:rgba(255,255,255,.18)}
+
+/* ---------- teks kecil di komputer 3D ---------- */
+html[data-theme=dark] .pc3d-hint{color:rgba(242,240,232,.55)}
+
+/* =========================================================
+   HALAMAN "MENIKMATI ALAM" (hobi-alam.html)
+   ========================================================= */
+/* tombol bulan / matahari di header */
+.al-top .al-tg{display:grid;place-items:center;width:42px;height:42px;padding:0;border:0;cursor:pointer;color:#fff}
+.al-tg svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.al-tg .i-sun{display:none}
+html[data-theme=dark] .al-tg .i-sun{display:block}
+html[data-theme=dark] .al-tg .i-moon{display:none}
+
+/* pagi = putih */
+:root{--dk:#fff}
+body.x,html:has(.al-top) body{background:#fff;color:#17161a}
+html:has(.al-top) h2 em{color:#0f7f70}
+html:has(.al-top) .al-hero,html:has(.al-top) .al-hero h1,html:has(.al-top) .al-hero .cap{color:#fff}
+html:has(.al-top) .al-hero h2 em{color:inherit}
+.al-dst{background-color:#fff}
+
+.lst{color:#8a8794}.lst li.on{color:#17161a}
+
+.pl{box-shadow:0 20px 40px -16px rgba(0,0,0,.4)}
+
+
+
+
+
+
+
+
+/* malam = hitam */
+html[data-theme=dark]{--dk:#000}
+html[data-theme=dark]:has(.al-top) body{background:#000;color:#f2f0e8}
+html[data-theme=dark] .al-dst{background:#000}
+
+html[data-theme=dark] .lst{color:#7d7b88}html[data-theme=dark] .lst li.on{color:#fff}
+
+html[data-theme=dark] .pl{box-shadow:0 22px 44px -14px rgba(0,0,0,.85)}
+
+
+
+
+
+
+
+html[data-theme=dark] h2 em{color:var(--ac2)}
+
+
+
+
+html[data-theme=dark] .al-nav a{background:#14131a;color:#f2f0e8;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+html[data-theme=dark] .al-nav small{color:#a9a597}
+
+/* foto latar "Pergi ke Tempat yang Membekas": lapisan warna harus di ATAS foto supaya tulisan terbaca */
+
+
