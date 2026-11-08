@@ -1,0 +1,10 @@
+Taruh gambar cover lagu di folder ini (rasio 2:3, ideal 800x1200).
+Nama file harus sama dengan yang tertulis di js/data-lagu.js:
+  shape-of-my-heart.jpg
+  raissa-losing-us.jpg
+  taylor-exile.jpg
+  the1975-about-you.jpg
+  alex-merry-christmas.jpg
+  olivia-the-cure.jpg
+  settings.jpg
+Untuk menukar gambar antar lagu, cukup tukar nama filenya.
