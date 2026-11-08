@@ -1,0 +1,285 @@
+REVISI 36b — HALAMAN LOGIN rapi di HP & tablet (judul rata tengah, kartu tidak menimpa teks).
+REVISI 36 — LOADING BARU, RAPI DI HP, DATABASE SIAP IMPOR.
+  - LOADING: layar loading kini pakai progres NYATA (bar + persen + tulisan tahap), tidak lagi menunggu paksa 2,3 detik (sekarang minimal 0,8 detik,
+    lalu langsung masuk begitu data & gambar pertama siap). Logo & gaya dasar loading ditanam langsung di index.html sehingga muncul seketika.
+    Bila koneksi lambat >6 detik muncul pesan + tombol "Muat ulang". Efek gelembung dikurangi di HP supaya ringan. Foto menu punya efek shimmer saat dimuat.
+  - SERVER LEBIH CEPAT: setelah struktur database lengkap sekali, pembukaan berikutnya melewati belasan pengecekan skema (catatan 'schema_version' di tabel settings).
+  - HP: tinggi layar memakai dvh (tidak terpotong bar browser), input 16px (tidak zoom sendiri di iPhone), area sentuh min. 40px, layar sangat kecil (<=340px) dirapikan.
+  - DATABASE: database.sql ditulis ulang bersih (12 tabel, 16 menu, 6 voucher, akun admin) dan AMAN diimpor berulang (INSERT IGNORE, tidak menimpa menu/harga/voucher yang sudah diubah).
+    CARA: phpMyAdmin > Import > pilih database.sql > Go (database mimoo_co_v1 dibuat otomatis). Opsional lalu import data-contoh.sql.
+  - Ganti SEMUA file lalu Ctrl+F5 (di HP: hapus cache / buka tab baru).
+
+REVISI 31 — LOGO MENYATU + PROFIL BARU (EDIT FOTO, NAMA, USERNAME, KATA SANDI).
+  - LOGO: assets/images/logo.png/.webp dan logo-icon.png/.webp dibuat TRANSPARAN bergaya stiker (garis tepi putih tipis). Tidak ada lagi kotak putih/pink di belakang logo,
+    jadi menyatu dengan sidebar, header HP, halaman login, splash, dan mode malam. Header HP kini memakai logo-icon (kepala saja).
+    Sidebar laptop: logo sedikit lebih besar, menu tidak lagi terpotong di layar pendek (kotak "Bayar di kasir" otomatis disembunyikan bila layar kurang tinggi).
+  - PROFIL (pelanggan DAN penjual): halaman Profil dirombak — foto besar dengan tombol kamera, lencana peran, ringkasan angka, daftar Pengaturan akun.
+    Tombol "Edit profil" membuka jendela: ganti foto (pilih foto, geser & zoom, hasilnya dipotong bulat/persegi 320px), ganti nama, ganti username, tab "Kata sandi"
+    (sandi lama + sandi baru + ulangi, ada indikator kekuatan). Foto tampil di pojok kanan atas dan di daftar pelanggan penjual.
+  - Server: file baru config/profile.php; api.php menambah aksi profile_update, password_change, avatar_save, avatar_remove. Kolom users.avatar dibuat OTOMATIS saat website dibuka
+    (atau jalankan upgrade-database.sql). Foto disimpan di assets/uploads/avatars/ (folder dibuat otomatis; pastikan XAMPP boleh menulis di folder assets/).
+    Keamanan: foto divalidasi (hanya JPG/PNG/WebP, maks 3 MB) lalu digambar ulang lewat GD, nama file acak, folder uploads dikunci agar tidak bisa menjalankan PHP,
+    ganti sandi wajib sandi lama + dibatasi percobaan salah (6x = tunggu 5 menit), username unik.
+  - File baru: assets/profile.js, config/profile.php, assets/uploads/. File berubah: index.html, api.php, assets/app.js, assets/style.css, database.sql, upgrade-database.sql, gambar logo.
+  - Mode demo (index.html dibuka langsung): foto/nama/username tersimpan di browser saja; ganti sandi dinonaktifkan (perlu server).
+  - Ganti SEMUA file lalu Ctrl+F5.
+
+REVISI 30 — GAME: MENU ES KRIM BARU.
+  - Es krim biasa & Cookies = +1, Duo stroberi-matcha & Duo cokelat-vanila = +3, Beruang stroberi = +10 (langka: muncul sendirian tiap 14-20 detik, paling cepat detik ke-11, jatuh lebih pelan, bersinar emas).
+  - Bom diganti gambar BOM (-5 koin). Gambar baru di assets/images/game/ (bomb-skull.png dihapus).
+  - Layar mulai menampilkan daftar poin. Angka ada di GAME_CFG (assets/game.js) dan GAME_RULES (config/game.php) — samakan keduanya bila diubah.
+  - Server (config/game.php) ikut diperbarui: kode catatan tangkapan baru, batas koin per ronde 400, beruang maksimal 5x per ronde. WAJIB ganti file game.js DAN config/game.php sekaligus, lalu Ctrl+F5.
+
+REVISI 29 — GAME DI HP: tombol Game masuk navbar bawah HP, area game muat di layar HP.
+
+REVISI 28 — HERO BARU (CUP MIMO CO).
+  - Gambar hero diganti ke assets/images/hero-cup.webp (cup MIMO CO). Tidak lagi memakai gambar dari yole.com.
+  - Hero dibuat ulang: kartu pink, cup keluar dari kotak, stiker 0% sugar, rapi di HP, tablet, laptop, dan mode malam.
+  - Perubahan di index.html, assets/style.css (bagian paling bawah), assets/app.js. Tekan Ctrl+F5 setelah mengganti file.
+
+REVISI 27 — LOGO RAPI.
+  - Logo di sidebar laptop sebelumnya terpotong (kotaknya mengecil jadi tinggi 0 saat layar pendek). Sekarang ukurannya tetap persegi 116px di tengah sidebar.
+  - Logo di header HP dan halaman login ikut dibuat tetap persegi dan tidak terpotong. Perubahan hanya di assets/style.css (Ctrl+F5).
+
+REVISI 26 — MENU BARU (16 MENU) + LOGO BARU.
+  - Menu diganti total jadi 16: 8 Pint, 4 Sundae Cup, 4 Cone (foto di assets/images/menu/). Kategori: Pint, Sundae Cup, Cone.
+  - Logo Mimoo Co diganti (assets/images/logo.png & logo.webp). Lingkaran kecil (chat) memakai logo-icon.png (kepala saja) agar tidak terpotong.
+  - Hero beranda (banner "Selamat ..., mau pesan apa?") TIDAK diubah.
+  - Database lama otomatis diganti SEKALI saat website dibuka: menu lama tanpa riwayat pesanan dihapus; menu lama yang pernah dipesan
+    disimpan tersembunyi (kategori archive) supaya riwayat pesanan & laporan keuangan tetap benar. Harga modal menu baru perlu diisi lagi.
+  - Harga semua menu baru Rp36.000 (coret Rp120.000) seperti sebelumnya; ubah lewat Dashboard > Kelola menu.
+  - Ganti SEMUA file lalu Ctrl+F5. Buka lewat http://localhost/mimoo-co/ (bukan index.html langsung).
+  - Fitur Game Mini & Tukar Koin (revisi 25) ikut digabung; voucher koin berlaku untuk semua menu baru.
+
+REVISI 25 — GAME MINI & TUKAR KOIN.
+  - Halaman baru "Game" (rail pelanggan + kartu "Main Game & dapat voucher" di Beranda). Admin tidak melihat game.
+  - Game "Tangkap Es Krim": 60 detik, geser jari / gerakkan mouse / panah kiri-kanan (A/D). Setiap es krim +1 koin (nilai per rasa bisa diubah di GAME_CFG & GAME_RULES), bom tengkorak -5 koin ronde (min 0).
+    Semua angka (durasi, nilai koin, penalti, kecepatan, rasio bom) ada di objek GAME_CFG di bagian atas assets/game.js.
+    Saat terhubung ke server, durasi/nilai koin/penalti mengikuti GAME_RULES di config/game.php (ubah di dua tempat bila ingin mengubah aturan).
+  - Koin ditambahkan ke dompet per akun di server. Tab "Tukar Koin": tukar koin dengan voucher; voucher masuk "Voucher saya" dan dipakai di checkout
+    lewat alur voucher yang sudah ada (pesanan dibatalkan = voucher kembali). Satu voucher koin bisa ditukar berkali-kali selama koin cukup.
+  - ANTI-CURANG: server tidak menerima angka koin dari browser. Server memeriksa token sekali pakai (kedaluwarsa 30 menit), durasi minimal ronde,
+    batas koin per ronde (400), batas koin per hari (500), jeda antar ronde (5 detik), dan menghitung ulang koin dari catatan tangkapan.
+  - Penjual: Dashboard > Voucher > Voucher baru > "Cara dapat" = "Tukar koin game", isi "Harga koin" dan "Batas tukar per hari" (0 = bebas).
+    3 voucher contoh dibuat otomatis: KOIN-500 (500 koin = potongan Rp5.000), KOIN-1000 (1.000 koin = Rp12.000), KOIN-2000 (2.000 koin = 1 es krim gratis). Harga koin & potongan bebas diubah penjual. Voucher koin tidak ikut klaim mingguan/akun baru.
+  - Database: tabel baru game_wallets & game_rounds, kolom vouchers.point_cost, nilai 'points' pada vouchers.claim_mode. Dibuat/diperbarui OTOMATIS saat
+    website dibuka (tanpa menghapus data). Cadangan manual: upgrade-database.sql (MariaDB/XAMPP, aman diulang).
+  - Mode demo (index.html dibuka langsung): game bisa dimainkan, koin disimpan di browser; penukaran voucher dinonaktifkan dengan pesan jelas.
+  - Gambar game: assets/images/game/ (mascot-normal/kaget/senang, icecream-choco/vanilla/stracciatella, bomb-skull).
+Game DIPISAH dari index.html: tampilan game & banner dibuat lewat assets/game.js, gayanya di assets/game.css, dan keduanya dimuat malas (hanya untuk pelanggan, saat Beranda siap/halaman Game dibuka).
+File baru: assets/game.js, assets/game.css, config/game.php, assets/images/game/*. File berubah: api.php, config/vouchers.php, index.html (hanya dibersihkan), assets/app.js (pemuat game), assets/style.css, database.sql, upgrade-database.sql.
+Ganti SEMUA file lalu Ctrl+F5. Catatan: PHP/MySQL tidak tersedia di lingkungan pengerjaan, kode PHP belum dijalankan. Uji sekali di XAMPP (buka cek-sistem.php).
+
+REVISI 24 — PELANGGAN BISA CETAK STRUK.
+  - Tombol "Cetak struk" di tiap kartu pesanan (Pesanan) dan di halaman Lacak pesanan; memakai struk yang sama dengan dashboard penjual
+    (kode pesanan, tanggal, nama, tipe/meja, item, diskon voucher, total, catatan). Tidak tampil untuk pesanan yang dibatalkan.
+  - Browser harus mengizinkan pop-up agar jendela cetak terbuka.
+
+REVISI 23 — PESANAN TIDAK MASUK KE PENJUAL / VOUCHER HILANG (penyebab: dibuka lewat index.html langsung).
+  - Jika halaman dibuka dari folder (alamat C:/xampp/htdocs/.../index.html) website berjalan MODE DEMO: pesanan hanya di browser itu, voucher mati.
+    Sekarang halaman otomatis pindah ke http://localhost/<nama-folder>/ bila Apache XAMPP menyala. Jika Apache mati muncul catatan + tautan yang benar.
+  - Checkout di mode demo kini memberi peringatan jelas bahwa pesanan tidak masuk ke penjual.
+  - CARA BENAR: nyalakan Apache & MySQL di XAMPP, lalu buka http://localhost/mimoo-co/ (penjual: login admin di alamat yang sama, di browser/tab lain).
+  - Kode pesanan sekarang berawalan MC- (sebelumnya LH-). Foto hero dicoba dari internet dulu, lalu assets/images/hero-cup.webp bila ada.
+
+REVISI 22 — DATABASE LEBIH TAHAN ERROR + HERO BARU.
+  - Pemasangan otomatis kini mengecek 4 tabel inti (users, menus, orders, order_details). Jika ada yang hilang (mis. import phpMyAdmin gagal di tengah),
+    semuanya dilengkapi dari database.sql tanpa menimpa menu yang sudah ada. Bila gagal, pesan error menyebut perintah SQL yang bermasalah.
+  - Database lama diperbaiki otomatis: kategori menu diubah ke 5 kategori es krim (menu lama jadi all-flavors), kolom gambar diperpanjang jadi VARCHAR(500).
+  - cek-sistem.php sekarang juga MEMPERBAIKI otomatis lalu menampilkan hasilnya (buka http://localhost/mimoo-co/cek-sistem.php).
+  - database.sql: teks voucher disamakan (es krim), komentar diperbarui (42 menu). upgrade-database.sql ditulis ulang agar aman dijalankan berulang (MariaDB/XAMPP).
+  - data-contoh.sql aman diimport ulang (chat & pengeluaran contoh tidak menggandakan).
+  - Hero beranda: cup yolē besar (assets/images/hero-cup.webp, cadangan dari internet) + tampilan HP tidak lagi melebar ke samping.
+Catatan: PHP/MySQL tidak tersedia di lingkungan pengerjaan, jadi kode PHP diperiksa lewat pembacaan, belum dijalankan. Uji sekali di XAMPP lewat cek-sistem.php.
+
+REVISI 19 — ROMBAK TOTAL: LADA HITAM -> MIMOO CO (TOKO ES KRIM).
+  - Nama usaha: Mimoo Co (semua teks, judul halaman, chat, struk, CSV keuangan, panel penjual).
+  - Logo: logo pink es krim baru (assets/images/logo.png & logo.webp), dipakai di splash, login, sidebar, header, chat, favicon.
+  - Warna: pink #ff7fa7, cokelat #502817, krem #fff8e8, mint #7be0cf, mango #ffc84d, berry #b92d5d (mode gelap ikut).
+  - Menu: 42 rasa es krim (diambil dari iceCream.json Mimoo), harga Rp36.000 dicoret Rp120.000, berat 0.45 lbs.
+    Foto memakai tautan https (cdn.shopify.com) seperti project Mimoo, jadi perlu internet saat menampilkan menu.
+  - Kartu menu dibuat sama seperti referensi: badge kategori, tombol hati, pil cokelat kategori, tiga titik warna,
+    judul berjalan saat hover, harga coret, pil berat, tombol panah bulat (membuka detail > Tambah ke keranjang).
+  - Kategori baru: All Flavors, Dairy-Free, Seasonal, Breakfast, Special (menggantikan Kopi/Non-kopi/Makanan/Camilan/Dessert).
+  - Kolom baru menus.old_price & menus.weight (dibuat otomatis untuk database lama). Form Kelola menu punya isian Harga coret & Berat,
+    dan gambar boleh berupa tautan https:// atau file di assets/images/.
+  - Database baru: mimoo_co_v1 (dibuat otomatis saat index.php dibuka; tidak menyentuh database Lada Hitam lama).
+  - Akun penjual: username admin | password LadaHitam2026!  (password lama tetap berlaku; ganti lewat ubah-password-admin.php).
+  - Voucher: sekarang berlaku untuk "es krim" (semua kategori).
+File berubah: hampir semua (index.html, assets/*, api.php, config/*, *.sql). Ganti SEMUA file lalu Ctrl+F5.
+Catatan: PHP/MySQL tidak tersedia di lingkungan pengerjaan; tampilan diuji lewat mode demo di Chromium. Uji sekali di XAMPP.
+
+REVISI 18 — ULASAN & RATING DI DASHBOARD PELANGGAN.
+Pelanggan kini melihat ulasan pelanggan lain supaya tahu makanan Lada Hitam enak:
+  - Halaman baru "Ulasan" (sidebar laptop; di HP lewat kartu rating di beranda atau "Lihat semua"): rata-rata bintang makanan & pelayanan,
+    persentase pelanggan yang memberi 4-5 bintang, sebaran bintang, dan daftar ulasan dengan komentar + menu yang dipesan.
+  - Saring: Semua / Makanan bintang 5 / Ada komentar.
+  - Beranda: strip "Kata pelanggan" berisi ulasan berkomentar dengan bintang makanan 4-5 (geser ke samping).
+  - Privasi: nama ditampilkan singkat ("Budi S."); kode pesanan dan data akun tidak dikirim ke pelanggan lain.
+Endpoint baru: reviews (login). Pelanggan memberi rating dari Pesanan > pesanan selesai (sudah ada sebelumnya).
+File baru/berubah: assets/reviews.js (baru), config/ratings.php, api.php, index.html, assets/app.js, assets/style.css. Ganti lalu Ctrl+F5.
+
+REVISI 17 — DASHBOARD KEUANGAN PENJUAL.
+Menu baru "Keuangan" (sidebar laptop / tab bawah HP) di dashboard penjual:
+  - Ringkasan HARI INI dan BULAN INI: pendapatan, modal bahan, pengeluaran, laba bersih.
+  - Filter periode: Hari ini, Kemarin, 7 hari, Bulan ini, Bulan lalu, atau pilih tanggal sendiri (maks. 93 hari).
+  - Kartu: pendapatan (dibanding periode sebelumnya), modal, laba kotor + margin, pengeluaran, laba bersih,
+    jumlah pesanan (selesai / masuk / batal / berjalan), rata-rata per pesanan dan per hari.
+  - Grafik pendapatan per hari (per jam bila periode 1 hari) dengan pemisahan modal dan laba, rincian per hari,
+    menu terlaris + labanya, makan di tempat vs bawa pulang, jam tersibuk.
+  - Catat PENGELUARAN (belanja bahan, gaji, sewa, listrik, dll) untuk menghitung laba bersih.
+  - MODAL PER MENU: isi biaya bahan per porsi (di Keuangan > Modal per menu, atau di form Ubah menu).
+  - Tombol Unduh CSV untuk dibuka di Excel / Google Sheets.
+Cara menghitung: pendapatan = total pesanan berstatus SELESAI (sudah dikurangi voucher). Pesanan menunggu/disiapkan/batal tidak dihitung.
+Laba kotor = pendapatan - modal. Laba bersih = laba kotor - pengeluaran.
+Modal tiap pesanan dicatat saat pesanan dibuat, jadi mengubah modal menu tidak mengubah laporan pesanan yang sudah lewat.
+Pesanan lama / menu yang modalnya belum diisi memakai modal menu saat ini; jika modal 0, labanya sama dengan harga jual.
+Harga modal hanya terlihat oleh penjual; pelanggan tidak menerimanya dari server.
+Database: kolom menus.cost_price, order_details.cost_price, dan tabel expenses DIBUAT OTOMATIS saat website dibuka (database lama aman).
+File baru/berubah: config/finance.php (baru), assets/finance.js (baru), api.php, index.html, assets/app.js, assets/style.css, database.sql, upgrade-database.sql, data-contoh.sql.
+Endpoint admin baru: finance, expense_save, expense_delete, menu_costs_save. Ganti SEMUA file lalu Ctrl+F5.
+Catatan: PHP/MySQL tidak tersedia di lingkungan pengerjaan; hitungan laporan diuji dengan PHP + SQLite dan tampilan dengan API tiruan. Uji sekali di XAMPP.
+
+REVISI 16 — DATABASE BARU `ladahitam_cafe_v3` + PEMASANGAN OTOMATIS.
+Database sekarang bernama ladahitam_cafe_v3 (tidak bentrok dengan taking_order_cafe maupun ladahitam_baru).
+Pemasangan otomatis: saat index.php dibuka pertama kali, api.php membuat database ladahitam_cafe_v3 jika belum ada, lalu membuat semua tabel (users, menus, orders, order_details, chat_messages, settings), 25 menu, dan akun admin dari database.sql. Import manual di phpMyAdmin TIDAK wajib lagi (tetap boleh: import database.sql).
+Syarat: MySQL menyala dan user/password di config/database.php benar (XAMPP bawaan: root, kosong).
+Ganti SEMUA file lalu Ctrl+F5. Diagnosa: /cek-sistem.php
+
+REVISI 15 — DATABASE BARU + PERBAIKAN CHAT GAGAL KIRIM.
+NAMA DATABASE BARU: ladahitam_cafe_v3 (sebelumnya taking_order_cafe). Import database.sql -> database baru terbentuk sendiri, tidak menyentuh database lama. config/database.php sudah memakai nama baru.
+Perbaikan chat: tabel chat_messages tidak lagi memakai foreign key (penyebab umum gagal dibuat/ditulis), initialize_chat lebih tahan error; sesi kedaluwarsa dipulihkan otomatis lalu kirim ulang; bubble gagal kini menampilkan alasan sebenarnya; config 'debug' => true menampilkan detail error server (ubah ke false sebelum online).
+Diagnosa: buka http://localhost/lada-hitam/cek-sistem.php (hanya dari localhost) -> memeriksa PHP, file, koneksi database, semua tabel, dan tes tulis chat. Hapus file ini sebelum online.
+Ganti SEMUA file (index.html, api.php, config/*, assets/*, *.sql) lalu Ctrl+F5.
+
+REVISI 14 — BUKA / TUTUP TOKO + CHAT DIUJI DUA ARAH.
+Penjual: di Dashboard ada panel "Toko BUKA/TUTUP" (tombol Tutup toko / Buka toko + pesan opsional untuk pelanggan, mis. "Buka lagi jam 09.00"). Tombol pil "Buka/Tutup" di bar atas juga bisa diketuk untuk mengganti status.
+Saat TUTUP: pelanggan melihat banner merah, tombol + menu redup, tambah keranjang ditolak, tombol checkout nonaktif "Cafe sedang tutup". Server juga menolak checkout (bukan hanya tampilan). Menu & chat tetap bisa dibuka. Pesanan yang sudah masuk tetap diproses.
+Saat BUKA: pelanggan bisa memesan lagi. Status dicek otomatis tiap 8 detik di HP/laptop pelanggan, jadi berubah tanpa refresh dan muncul notifikasi.
+Chat: pelanggan <-> penjual dicek tiap 3 detik, wajib login. Alur sudah diuji: pelanggan kirim -> muncul di inbox penjual (badge) -> penjual balas -> muncul di pelanggan -> centang dibaca.
+Database: tabel baru `settings` (ada di database.sql, upgrade-database.sql, dan dibuat otomatis oleh api.php untuk database lama). Endpoint baru: store (publik), store_set (admin).
+File berubah: index.html, api.php, config/catalog.php, assets/app.js, assets/style.css, database.sql, upgrade-database.sql. Ganti lalu Ctrl+F5.
+
+REVISI 13 — DASHBOARD PENJUAL LENGKAP + DATABASE LENGKAP.
+Login penjual: username admin | password LadaHitam2026! (index.php, sama seperti pelanggan).
+Menu penjual (sidebar laptop / tab bawah HP):
+  Dashboard : ringkasan, grafik 7 hari, menu terlaris, papan pesanan 4 kolom, ubah status, tombol Cetak struk. Pesanan baru otomatis muncul + notifikasi.
+  Chat      : daftar percakapan + badge belum dibaca, balas pelanggan, chip balasan cepat, efek mengetik untuk pesan masuk, centang terkirim/dibaca (sama seperti sisi pelanggan, polling 4 detik).
+  Menu      : tambah / ubah (nama, kategori, harga, deskripsi, gambar, ketersediaan) / tandai habis / hapus. Menu yang pernah dipesan tidak dihapus, hanya ditandai habis.
+  Pelanggan : daftar pelanggan, jumlah pesanan, total belanja, tombol Chat.
+DATABASE: import database.sql (struktur 5 tabel + 25 menu + akun admin). Opsional import data-contoh.sql untuk pelanggan/pesanan/chat contoh (password semua akun contoh: LadaHitam2026!, hapus sebelum online).
+File berubah: index.html, api.php, assets/app.js, assets/style.css, database.sql, upgrade-database.sql, data-contoh.sql (baru). Ganti lalu Ctrl+F5.
+Endpoint baru di api.php (admin): customers, menu_save, menu_delete; chat_thread kini mengembalikan customer_read_upto.
+Catatan: PHP/MySQL tidak tersedia di lingkungan pengerjaan; antarmuka diuji di browser dengan API tiruan. Uji sekali di XAMPP.
+
+REVISI 12b — PERBAIKAN LOADING LAMBAT: timeout 10 detik pada request api (splash tidak lagi nyangkut), Google Fonts dimuat non-blocking, host database 127.0.0.1, session dilepas untuk request baca-saja, logo.png diperkecil. Ganti index.html, api.php, config/database.php (cocokkan password), assets/app.js, assets/images/logo.png lalu Ctrl+F5.
+
+REVISI 12 — FITUR CHAT PELANGGAN -> PENJUAL (gaya AI chat). Di dashboard pelanggan ada halaman Chat (ikon gelembung di bar atas, dan menu Chat di sidebar laptop): bubble pesan, chip pertanyaan cepat, indikator menunggu balasan, centang terkirim/dibaca, badge pesan baru, dan balasan penjual muncul dengan efek mengetik. Pesan disimpan di tabel chat_messages (dibuat otomatis oleh api.php; database.sql juga sudah diperbarui). Mode demo (index.html): balasan penjual hanya SIMULASI otomatis supaya tampilan bisa dicoba.
+ENDPOINT UNTUK DASHBOARD PENJUAL (login sebagai admin; POST wajib header X-CSRF-Token dari bootstrap):
+  GET  api.php?action=chat_inbox                  -> {threads:[{user_id,name,username,last_message,last_sender,last_at,unread}]}
+  GET  api.php?action=chat_thread&user_id=ID&after=0 -> {messages:[{id,sender,message,created_at,read_at}]} (otomatis menandai pesan pelanggan sudah dibaca)
+  POST api.php?action=chat_reply  {user_id, message} -> membalas pelanggan (maks 1000 karakter)
+Sisi pelanggan memakai: chat (GET), chat_send (POST), chat_read (POST). Pelanggan memeriksa balasan baru tiap 4 detik saat chat terbuka, dan tiap 20 detik di latar belakang untuk badge.
+Ganti index.html, api.php, config/catalog.php, assets/style.css, assets/app.js lalu Ctrl+F5.
+
+REVISI 11 — Hero beranda dirombak (judul muncul kata per kata, chip favorit berputar, hitung mundur jumlah menu, parallax mouse/sentuhan/kemiringan HP, cincin & kilau berputar, tampil rapi di HP). Gambar cup/botol di kartu menu diperkecil + bayangan lantai + efek miring saat disentuh. Animasi checkout baru: tombol progres -> centang hijau, item keranjang 'terbang' ke dapur, lalu layar sukses dengan struk tercetak, total menghitung naik, stepper status, dan konfeti kanvas. Tambahan: efek ripple tombol, percikan saat tambah menu, reveal saat scroll, bar progres scroll. Ukuran gambar kartu bisa diatur lewat variabel --pimg di style.css (bagian .pv). Ganti index.html, assets/style.css, assets/app.js lalu Ctrl+F5. Backend PHP dan database TIDAK berubah.
+
+REVISI 10 — ROMBAKAN TOTAL ala aplikasi pesan makanan: splash gelembung oranye, onboarding 3 layar (muncul sekali), login baru, beranda dengan hero + kategori berwarna + kartu menu, tab bar melayang di HP / sidebar di laptop, detail menu layar penuh, keranjang + pilihan makan di tempat/bawa pulang, layar sukses berkonfeti, pelacakan pesanan animasi (otomatis diperbarui tiap 8 detik di mode PHP), profil, mode malam, dashboard admin ikut desain baru. Ganti file index.html, assets/style.css, assets/app.js lalu tekan Ctrl+F5. Backend PHP dan database TIDAK berubah.
+
+REVISI 9 — Logo baru (assets/images/logo.png), warna website diganti ke espresso & amber sesuai logo, navbar dan bar kategori tidak lagi mengikuti saat scroll, latar kartu menu beranimasi (uap, gelembung, gelombang cairan, bara, kilau) sesuai warna tiap menu. Ganti semua file lalu tekan Ctrl+F5. Tidak ada perubahan database.
+
+REVISI 8 — Navbar melayang (glass) dengan indikator menu yang bergeser halus, tombol Keranjang di navbar untuk menampilkan/menyembunyikan keranjang. Keranjang muncul otomatis saat item pertama ditambahkan dan hilang otomatis saat kosong; tombol melayang 'Tampilkan keranjang' muncul bila keranjang disembunyikan. Kartu menu baru: gambar diperkecil, badge '✓ n di keranjang', jumlah per kategori. Form keranjang dibuat ringkas. Ganti semua file lalu tekan Ctrl+F5. Tidak ada perubahan database.
+
+REVISI 7 — Navbar penuh di atas (kiri ke kanan), mode pagi/malam (tombol bulan/matahari), dashboard pengelola baru (ringkasan, grafik 7 hari, menu terlaris), tampilan menu baru dengan hero dan pilihan spesial, logo baru (assets/images/logo.svg). Ganti semua file lalu tekan Ctrl+F5. Tidak ada perubahan database.
+
+REVISI 4 — Tombol Masuk/Keluar selalu terlihat (sidebar + bar atas), animasi keranjang (terbang ke keranjang, hitung total, bar keranjang di HP, konfeti), jejak status pesanan, halaman dalam dirapikan.
+
+REVISI 3 — TAMPILAN BARU, LOGIN BARU, RESPONSIF
+Ganti seluruh file lama dengan isi folder ini lalu tekan Ctrl+F5. config/database.php tetap pakai milikmu.
+Perubahan: desain halaman dirapikan, login/daftar dengan tab + tombol Lihat password, bottom-sheet di HP,
+navigasi bawah untuk tablet/HP, grid menu 3/2/1 kolom menyesuaikan layar.
+
+REVISI 2 — PERBAIKAN KATALOG KOSONG
+Ganti file website lama dengan seluruh isi folder lada-hitam pada ZIP ini.
+Jika config/database.php lama berisi kredensial sendiri, pertahankan nilainya.
+Buka http://localhost/lada-hitam/ lalu tekan Ctrl+F5.
+Tabel menus yang kosong akan diisi 25 menu secara otomatis. Menu lama yang
+sudah ada tidak ditimpa. Kolom checkout yang belum ada ditambahkan otomatis.
+Database dan tabel dasarnya tetap harus tersedia (dari database.sql awal).
+Tidak perlu import ulang SQL untuk memperbaiki katalog kosong pada database
+lama yang tabelnya sudah ada. Jangan menjalankan upgrade-database.sql lagi
+setelah perbaikan otomatis, agar menu tidak terduplikasi.
+Jika database tidak terhubung, gambar dan keranjang tampil sebagai pratinjau.
+Checkout hanya aktif sesudah katalog server berhasil dimuat.
+
+CAFE LADA HITAM — APLIKASI PEMESANAN
+
+1. COBA TAMPILAN TANPA XAMPP
+Buka index.html di browser. Ini mode DEMO: favorit, keranjang, dan pesanan
+tersimpan di browser perangkat itu saja. Akun demo adalah profil lokal,
+bukan autentikasi sungguhan; gunakan data contoh. Admin hanya ada di mode PHP.
+
+2. MENJALANKAN VERSI PHP + MYSQL
+- Gunakan XAMPP dengan PHP 8.0+ dan MySQL/MariaDB (PDO MySQL aktif).
+- Salin folder lada-hitam ke C:\xampp\htdocs\
+- Nyalakan Apache dan MySQL.
+- Buka http://localhost/phpmyadmin
+- Untuk pemasangan BARU, import database.sql. Database: ladahitam_cafe_v3.
+- Buka config/database.php dan cocokkan host, nama database, user, password.
+- Buka http://localhost/lada-hitam/index.php
+- Pelanggan dapat mendaftar lalu masuk untuk membuat pesanan.
+- Admin awal: username admin | password LadaHitam2026!
+- Setelah login admin, klik Kelola cafe di sidebar. Pada HP, opsi Kelola cafe
+  tersedia di dialog akun.
+- Kelola pesanan: ubah Menunggu / Disiapkan / Selesai / Dibatalkan.
+- Kelola menu: ubah harga dan ketersediaan. Harga checkout dihitung di server.
+- Pembayaran dilakukan di kasir; tidak ada payment gateway/transfer otomatis.
+
+3. JIKA DATABASE LAMA SUDAH BERISI DATA
+Backup dulu database melalui Export di phpMyAdmin.
+Jangan import database.sql ke database lama yang berisi pesanan.
+Untuk revisi 2, buka website dahulu agar perbaikan otomatis berjalan.
+upgrade-database.sql disediakan untuk migrasi manual dari versi awal saja. Menu dan pesanan lama dipertahankan. Jika admin lama sudah
+ada, password lama tidak diganti. Password akun lama harus berupa hash bcrypt
+atau password_hash PHP. Akun dengan hash MD5 perlu direset sebelum dipakai.
+
+4. SEBELUM DIPAKAI ONLINE
+Ganti password admin awal dari terminal XAMPP:
+C:\xampp\php\php.exe C:\xampp\htdocs\lada-hitam\ubah-password-admin.php
+Masukkan username admin dan password baru. Sesuaikan database hosting di
+config/database.php. Server harus mendukung PHP + MySQL; GitHub Pages hanya
+menjalankan index.html sebagai demo. Gunakan HTTPS di hosting.
+
+5. GAMBAR DAN MENU
+Semua 25 gambar menu kiriman sudah dimasukkan: 10 minuman, 10 makanan,
+5 camilan/dessert. Gambar dioptimalkan ke WebP agar ZIP dan halaman lebih ringan.
+Nama beberapa varian disesuaikan berdasarkan gambar, termasuk dua gambar
+ikan bakar dan dua gambar kentang goreng yang mirip. Harga merupakan CONTOH,
+bukan harga resmi cafe. Koreksi sebelum dipakai untuk pelanggan.
+Mode PHP mengambil katalog dari tabel menus. Nama, deskripsi, kategori, dan
+path gambar dapat diedit di phpMyAdmin; harga/ketersediaan melalui admin.
+Mode demo memakai assets/menu.js sehingga perubahannya terpisah dari database.
+
+6. STRUKTUR
+index.php          Tampilan terhubung database
+index.html         Demo offline
+api.php            Login, daftar, pesanan, dan operasi admin
+assets/style.css   Tampilan responsif
+assets/app.js      Interaksi aplikasi
+assets/images/     Logo dan seluruh gambar menu
+config/database.php Konfigurasi koneksi
+config/menu.json   Referensi katalog awal
+
+7. CATATAN PEMERIKSAAN
+Tampilan dan interaksi frontend diperiksa melalui preview browser.
+Lingkungan pengerjaan tidak menyediakan runtime PHP/MySQL sehingga integrasi
+server perlu diuji setelah diimport di XAMPP. File awal memiliki halaman kosong;
+halaman tersebut sekarang mengarah ke aplikasi utama. Laporan di dashboard
+menampilkan jumlah pesanan dan total penjualan selesai, bukan laporan akuntansi.
+
+REVISI 5 — Landing page baru, halaman Akun saya, tampilan dalam didesain ulang.
+Ganti index.html, assets/style.css, assets/app.js lalu tekan Ctrl+F5. api.php dan database tidak berubah.
+
+REVISI 6 — Tampilan aplikasi kasir: layar loading, login layar penuh (ada tombol Kembali ke login), keranjang menempel di sisi kanan (desktop), papan pesanan admin 4 kolom, gambar menu tidak terpotong lagi.
+File assets/images/163715.webp (Keripik Kentang) sebelumnya kosong; sekarang berisi gambar sementara. Ganti dengan foto asli keripik kentang bernama sama.
+Ganti index.html, assets/style.css, assets/app.js, dan gambar 163715.webp, lalu Ctrl+F5. api.php dan database tidak berubah.
